@@ -1,0 +1,19 @@
+# A python program to get the top stories from Google news.
+
+# import the needed module
+from bs4 import BeautifulSoup
+import requests,time
+# creating a class for the web scrapping
+class Top_stories():
+    def __init__(self):
+        url = 'https://news.google.com/news/rss'
+        page = requests.get(url)
+
+        soup = BeautifulSoup(page.content, 'html.parser')
+        titles = soup.find_all('title')
+        for title in titles:
+            print(title.text.upper())
+            print(time.ctime())
+            print('-'*70)
+
+Top_stories()
